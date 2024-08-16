@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 
 const PlanetsTab = ({planetsTabContents}) => {
-  const [selectedTab, setSelectedTab] = useState('General');
+  const [selectedTab, setSelectedTab] = useState('Sign');
 
   const handleTabPress = tab => {
     setSelectedTab(tab);
@@ -10,32 +11,48 @@ const PlanetsTab = ({planetsTabContents}) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Understanding your Kundli</Text>
+      <Text style={styles.title}>Planets</Text>
       <View style={styles.tabsContainer}>
-        <TouchableOpacity
-          style={[styles.tab, selectedTab === 'Sign' && styles.selectedTab]}
-          onPress={() => handleTabPress('Sign')}>
-          <Text
-            style={[
-              styles.tabText,
-              selectedTab === 'Sign' && styles.selectedTabText,
-            ]}>
-            Sign
-          </Text>
+        <TouchableOpacity onPress={() => handleTabPress('Sign')}>
+          <LinearGradient
+            colors={
+              selectedTab === 'Sign'
+                ? ['#70E1F5', '#FFD194']
+                : ['transparent', 'transparent']
+            }
+            start={{x: 0, y: 0}}
+            end={{x: 1, y: 1}}
+            style={[styles.tab, selectedTab === 'Sign' && styles.selectedTab]}>
+            <Text
+              style={[
+                styles.tabText,
+                selectedTab === 'Sign' && styles.selectedTabText,
+              ]}>
+              Sign
+            </Text>
+          </LinearGradient>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            styles.tab,
-            selectedTab === 'Nakshatra' && styles.selectedTab,
-          ]}
-          onPress={() => handleTabPress('Nakshatra')}>
-          <Text
+        <TouchableOpacity onPress={() => handleTabPress('Nakshatra')}>
+          <LinearGradient
+            colors={
+              selectedTab === 'Nakshatra'
+                ? ['#70E1F5', '#FFD194']
+                : ['transparent', 'transparent']
+            }
+            start={{x: 0, y: 0}}
+            end={{x: 1, y: 1}}
             style={[
-              styles.tabText,
-              selectedTab === 'Nakshatra' && styles.selectedTabText,
+              styles.tab,
+              selectedTab === 'Nakshatra' && styles.selectedTab,
             ]}>
-            Nakshatra
-          </Text>
+            <Text
+              style={[
+                styles.tabText,
+                selectedTab === 'Nakshatra' && styles.selectedTabText,
+              ]}>
+              Nakshatra
+            </Text>
+          </LinearGradient>
         </TouchableOpacity>
       </View>
       <View style={styles.contentContainer}>
@@ -55,24 +72,22 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     color: '#FFFFFF',
-    marginBottom: 20,
+    marginBottom: 10,
   },
   tabsContainer: {
     flexDirection: 'row',
-    // justifyContent: 'space-around',
     marginBottom: 20,
   },
   tab: {
-    paddingVertical: 10,
+    paddingVertical: 5,
     paddingHorizontal: 20,
     borderRadius: 20,
+    marginRight: 15,
     borderWidth: 1,
     borderColor: '#FFFFFF',
-    marginRight: 15
   },
   selectedTab: {
-    backgroundColor:
-      'linear-gradient(90deg, rgba(255,196,0,1) 0%, rgba(1,218,197,1) 100%)',
+    borderColor: 'transparent',
   },
   tabText: {
     fontSize: 16,
@@ -91,3 +106,4 @@ const styles = StyleSheet.create({
 });
 
 export default PlanetsTab;
+

@@ -1,24 +1,18 @@
 import React, {useRef, useEffect} from 'react';
 import {
   SafeAreaView,
-  FlatList,
   Text,
   StyleSheet,
   Animated,
   Dimensions,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import Table from './src/Table';
-import Cards from './src/Cards';
 import CustomTabs from './src/CustomTabs';
-import Tabs from './src/Tabs';
-import PlanetsTab from './src/PlanetsTab';
-import Chart from './src/Chart';
+import Main from './src/Main';
 
 const {width, height} = Dimensions.get('window');
 
 const App = () => {
-  const combinedData = [{type: 'customTable'}, {type: 'table'}, {type: 'tabs'}];
   const opacityAnim = useRef(new Animated.Value(0.7)).current;
 
   useEffect(() => {
@@ -39,36 +33,14 @@ const App = () => {
   }, [opacityAnim]);
 
   const customTabContents = {
-    Basic: <Text style={styles.contentText}>Basic content goes here.</Text>,
-    Chart: <Chart />,
-    KP: <Text style={styles.contentText}>KP content goes here.</Text>,
+    Basic: <Text style={styles.contentText}>Basic content</Text>,
+    Chart: <Main />,
+    KP: <Text style={styles.contentText}>KP content</Text>,
     Ashtakvarga: (
-      <Text style={styles.contentText}>Ashtakvarga content goes here.</Text>
+      <Text style={styles.contentText}>Ashtakvarga content</Text>
     ),
-    Dasha: <Text style={styles.contentText}>Dasha content goes here.</Text>,
-    Report: <Text style={styles.contentText}>Report content goes here.</Text>,
-  };
-
-  const tabContents = {
-    General: <Cards />,
-    Planetary: (
-      <Text style={styles.contentText}>Planetary content goes here.</Text>
-    ),
-    Yoga: <Text style={styles.contentText}>Yoga content goes here.</Text>,
-  };
-
-  const planetsTab = {
-    Sign: <Text style={styles.contentText}>Planetary content goes here.</Text>,
-    Nakshatra: <Table />,
-  };
-  const renderItem = ({item}) => {
-    if (item.type === 'customTable') {
-      return <CustomTabs tabs={customTabContents} />;
-    } else if (item.type === 'table') {
-      return <PlanetsTab planetsTabContents={planetsTab} />;
-    } else if (item.type === 'tabs') {
-      return <Tabs tabContents={tabContents} />;
-    }
+    Dasha: <Text style={styles.contentText}>Dasha content</Text>,
+    Report: <Text style={styles.contentText}>Report content</Text>,
   };
 
   return (
@@ -81,11 +53,16 @@ const App = () => {
           style={styles.gradient}
         />
       </Animated.View>
-      <FlatList
-        data={combinedData}
-        renderItem={renderItem}
-        keyExtractor={(item, index) => index.toString()}
-      />
+       <CustomTabs
+          tabs={customTabContents}
+          fixedHeaderStyle={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            zIndex: 10,
+          }}
+        />
     </SafeAreaView>
   );
 };
@@ -106,6 +83,8 @@ const styles = StyleSheet.create({
   contentText: {
     fontSize: 18,
     color: '#DDDDDD',
+    marginHorizontal: 20,
+    textAlign: 'center'
   },
 });
 

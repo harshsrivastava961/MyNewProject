@@ -1,5 +1,7 @@
+
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 
 const Tabs = ({ tabContents }) => {
   const [selectedTab, setSelectedTab] = useState('General');
@@ -12,29 +14,62 @@ const Tabs = ({ tabContents }) => {
     <View style={styles.container}>
       <Text style={styles.title}>Understanding your Kundli</Text>
       <View style={styles.tabsContainer}>
-        <TouchableOpacity
-          style={[styles.tab, selectedTab === 'General' && styles.selectedTab]}
-          onPress={() => handleTabPress('General')}
-        >
-          <Text style={[styles.tabText, selectedTab === 'General' && styles.selectedTabText]}>
-            General
-          </Text>
+        <TouchableOpacity onPress={() => handleTabPress('General')}>
+          <LinearGradient
+            colors={
+              selectedTab === 'General'
+                ? ['#70E1F5', '#FFD194']
+                : ['transparent', 'transparent']
+            }
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={[styles.tab, selectedTab === 'General' && styles.selectedTab]}>
+            <Text
+              style={[
+                styles.tabText,
+                selectedTab === 'General' && styles.selectedTabText,
+              ]}>
+              General
+            </Text>
+          </LinearGradient>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.tab, selectedTab === 'Planetary' && styles.selectedTab]}
-          onPress={() => handleTabPress('Planetary')}
-        >
-          <Text style={[styles.tabText, selectedTab === 'Planetary' && styles.selectedTabText]}>
-            Planetary
-          </Text>
+        <TouchableOpacity onPress={() => handleTabPress('Planetary')}>
+          <LinearGradient
+            colors={
+              selectedTab === 'Planetary'
+                ? ['#70E1F5', '#FFD194']
+                : ['transparent', 'transparent']
+            }
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={[styles.tab, selectedTab === 'Planetary' && styles.selectedTab]}>
+            <Text
+              style={[
+                styles.tabText,
+                selectedTab === 'Planetary' && styles.selectedTabText,
+              ]}>
+              Planetary
+            </Text>
+          </LinearGradient>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.tab, selectedTab === 'Yoga' && styles.selectedTab]}
-          onPress={() => handleTabPress('Yoga')}
-        >
-          <Text style={[styles.tabText, selectedTab === 'Yoga' && styles.selectedTabText]}>
-            Yoga
-          </Text>
+        <TouchableOpacity onPress={() => handleTabPress('Yoga')}>
+          <LinearGradient
+            colors={
+              selectedTab === 'Yoga'
+                ? ['#70E1F5', '#FFD194']
+                : ['transparent', 'transparent']
+            }
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={[styles.tab, selectedTab === 'Yoga' && styles.selectedTab]}>
+            <Text
+              style={[
+                styles.tabText,
+                selectedTab === 'Yoga' && styles.selectedTabText,
+              ]}>
+              Yoga
+            </Text>
+          </LinearGradient>
         </TouchableOpacity>
       </View>
       <View style={styles.contentContainer}>
@@ -47,8 +82,7 @@ const Tabs = ({ tabContents }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // padding: 20,
-    paddingHorizontal:0,
+    paddingHorizontal: 0,
     backgroundColor: 'transparent',
   },
   title: {
@@ -56,23 +90,23 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#FFFFFF',
     marginBottom: 20,
-    marginHorizontal:20
+    marginHorizontal: 20,
   },
   tabsContainer: {
     flexDirection: 'row',
-    marginBottom: 20,
-    marginHorizontal:20
+    marginBottom: 10,
+    marginHorizontal: 20,
   },
   tab: {
-    paddingVertical: 10,
+    paddingVertical: 5,
     paddingHorizontal: 20,
     borderRadius: 20,
     borderWidth: 1,
     borderColor: '#FFFFFF',
-    marginRight:15
+    marginRight: 15,
   },
   selectedTab: {
-    backgroundColor: 'linear-gradient(90deg, rgba(255,196,0,1) 0%, rgba(1,218,197,1) 100%)',
+    borderColor: 'transparent',
   },
   tabText: {
     fontSize: 16,
